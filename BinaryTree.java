@@ -15,6 +15,7 @@ public class BinaryTree<T> {
     //     data when you are executing the "root" command on a given node
     //     (e.g. curNode.data.toString() + " ";) // Note the space added at the end
 
+    //inorder uses the logic of left -> root -> right. by simply using the recursive statements, we can add the data, and then call for the particular directions in which we need to traverse through.
     public String getInOrder() {
         return getInOrder(root); // call getInOrder starting at the root!
     }
@@ -44,7 +45,7 @@ public class BinaryTree<T> {
         return result;
     }
 
-
+    //preorder uses the logic of root -> left -> right. by simply using the recursive statements, we can add the data, and then call for the particular directions in which we need to traverse through.
     public String getPreOrder() {
         return getPreOrder(root); // call getPreOrder starting at the root!
     }
@@ -65,6 +66,7 @@ public class BinaryTree<T> {
     }
 
 
+    //postorder uses the logic of left -> right -> root. by simply using the recursive statements, we can add the data, and then call for the particular directions in which we need to traverse through.
     public String getPostOrder() {
         return getPostOrder(root);  // call getPostOrder starting at the root!
     }
