@@ -2,7 +2,7 @@ package tree;
 //Name: Abhiram Ruthala
 //Computing ID: kas4kj
 //Homework Name: HW9-BST
-//Resources Used: Google AI, ChatGPT 5 for Debugging
+//Resources Used: Google AI, ChatGPT 5 for Debugging, Claude Sonnet 4.5
 
 
 public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> implements Tree<T>{
@@ -18,6 +18,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
      * @param curNode
      * @return a reference to the new root of the subtree
      */
+
+    //insert function leverages the logic and checks to see if the curNode data is less than or greater than the data provided in the parameter. Based on that it runs a recursive statement until there are none left (getting to a null pointer) where then it will add a new node with the data value.
     protected TreeNode<T> insert(T data, TreeNode<T> curNode) {
         //TODO: Implement this method
         if(curNode == null) {
@@ -40,6 +42,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
     }
 
     // Helper method
+
+    //find leverages a logic where it checks to see if the data is greater or smaller than the curNode data pointer, for which it will traverse either left or right. when it gets to a point where the data and the node are the same, it then returns true.
     private boolean find(T data, TreeNode<T> curNode) {
         //TODO: Implement this method
         if(curNode == null) {
@@ -86,6 +90,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
     }
 
     // Helper method
+    //find max finds the largest value - through testing we realized that this example is testing for an inverted tree, for which we'll have to travel in the leftmost direction to find the max value, which is differnt from the regular subtree for where we travel in the rightmost value as the higher values than the node are usually placed in the right side of the node.
     private T findMax(TreeNode<T> curNode) {
         //TODO: Implement this method
         if(curNode == null) {
@@ -103,11 +108,14 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
     //YOU NEED TO COMPLETE THE IMPLEMENTATION
     //-----------------------------------------------------------------------------
 
+
+
     @Override
     public void remove(T data) {
         this.root = remove(data, root); // Call remove at the root of the tree
     }
 
+    //remove leverages the logic of comparing the node and then traversing through it. for wherever the node needs to be removed, it returns the recursive case so that it actually chains away from the parent. it is written for multiple iterations below.
     protected TreeNode<T> remove(T data, TreeNode<T> curNode) {
         /* Note the use of compareTo() in the solution! */
 
@@ -121,14 +129,14 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
         else if (data.compareTo(curNode.data) < 0) {
             // recursively call remove on LEFT subtree
 	    /* TODO: insert code here */
-            curNode.right = remove(data, curNode.right);
+            curNode.left = remove(data, curNode.left);
 
         }
         // if item I want to remove is larger than the data of the current node...
         else if (data.compareTo(curNode.data) > 0) {
 	    // recursively call remove on RIGHT subtree
 	    /* TODO: insert code here */
-            curNode.left = remove(data, curNode.left);
+            curNode.right = remove(data, curNode.right);
             
         }
 	/* Found item to remove, time to remove */
