@@ -92,10 +92,10 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
             return null;
         }
 
-        if (curNode.right == null) {
+        if (curNode.left == null) {
             return curNode.data;
         }
-        return findMax(curNode.right);
+        return findMax(curNode.left);
     }
 
     //-----------------------------------------------------------------------------
