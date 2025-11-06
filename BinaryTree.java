@@ -41,7 +41,7 @@ public class BinaryTree<T> {
 
         result += getInOrder(curNode.left);
 
-        return result.trim();
+        return result;
     }
 
 
@@ -61,7 +61,7 @@ public class BinaryTree<T> {
         result += getPreOrder(curNode.right);
         result += getPreOrder(curNode.left);
 
-        return result.trim();
+        return result;
     }
 
 
@@ -87,7 +87,7 @@ public class BinaryTree<T> {
 //            curNode = curNode.left.left;
 //        }
 
-        return result.trim();
+        return result;
     }
 
 
