@@ -2,7 +2,7 @@ package tree;
 //Name: Abhiram Ruthala
 //Computing ID: kas4kj
 //Homework Name: HW9-BST
-//Resources Used: Google AI
+//Resources Used: Google AI, ChatGPT 5 for Debugging
 
 
 public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> implements Tree<T>{
@@ -20,14 +20,15 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
      */
     protected TreeNode<T> insert(T data, TreeNode<T> curNode) {
         //TODO: Implement this method
-        if(curNode.data.compareTo(data) <= 0){
-            curNode = curNode.left;
-            insert(data, curNode);
-        } else if (curNode.data.compareTo(data) >= 0){
-            curNode = curNode.right;
-            insert(data, curNode);
+        if(curNode == null) {
+            return new TreeNode<>(data);
         }
-        return null;
+        if(curNode.data.compareTo(data) < 0){
+            curNode.left = insert(data, curNode.left);
+        } else if (curNode.data.compareTo(data) > 0){
+            curNode.right = insert(data, curNode.right);
+        }
+        return curNode;
     }
 
 
@@ -42,24 +43,39 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
     // Helper method
     private boolean find(T data, TreeNode<T> curNode) {
         //TODO: Implement this method
-        if(curNode.data.compareTo(data) <= 0){
-            curNode = curNode.left;
-            find(data, curNode);
-            if(curNode.data.compareTo(data) == 0){
-                return true;
-            } else {
-                return false;
-            }
-        } else if (curNode.data.compareTo(data) >= 0){
-            curNode = curNode.right;
-            find(data, curNode);
-            if(curNode.data.compareTo(data) == 0){
-                return true;
-            } else {
-                return false;
-            }
+        if(curNode == null) {
+            return false;
         }
-        return false;
+
+        int compare = curNode.data.compareTo(data);
+
+        if(compare == 0) {
+            return true;
+        } else if(compare < 0) {
+            return find(data, curNode.left);
+        } else {
+            return find(data, curNode.right);
+        }
+
+//
+//        if(curNode.data.compareTo(data) < 0){
+//            curNode = curNode.left;
+//            find(data, curNode);
+//            if(curNode.data.compareTo(data) == 0){
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        } else if (curNode.data.compareTo(data) > 0){
+//            curNode = curNode.right;
+//            find(data, curNode);
+//            if(curNode.data.compareTo(data) == 0){
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        }
+//        return false;
     }
 
 
@@ -73,12 +89,14 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
     // Helper method
     private T findMax(TreeNode<T> curNode) {
         //TODO: Implement this method
-        if (curNode.right != null) {
-            curNode = curNode.right;
-            findMax(curNode);
+        if(curNode == null) {
+            return null;
+        }
+
+        if (curNode.right == null) {
             return curNode.data;
         }
-        return null;
+        return findMax(curNode.right);
     }
 
     //-----------------------------------------------------------------------------
@@ -95,7 +113,9 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
         /* Note the use of compareTo() in the solution! */
 
 	// first check if the node to be inserted is null, if so return the node
-        if(curNode == null) return curNode;
+        if(curNode == null) {
+            return curNode;
+        }
 
 
         // if item I want to remove is smaller than the data of the current node...
