@@ -2,7 +2,7 @@ package tree;
 //Name: Abhiram Ruthala
 //Computing ID: kas4kj
 //Homework Name: HW9-BST
-//Resources Used: Google AI
+//Resources Used: Google AI, ChatGPT 5 for Debugging
 
 
 public class BinaryTree<T> {
@@ -21,19 +21,27 @@ public class BinaryTree<T> {
     private String getInOrder(TreeNode<T> curNode) {
         //TODO: return the in order traversal of this tree, space separated
 
+        if(curNode == null) {
+            return "";
+        }
+
         String result = "";
         //in-order: left -> root -> right
-        if(curNode.left != null && curNode.right != null) {
-            result += curNode.left.data.toString() + " " + curNode.data.toString() + " " + curNode.right.data.toString();
-        }
+//        if(curNode.left != null && curNode.right != null) {
+//            result += curNode.left.data.toString() + " " + curNode.data.toString() + " " + curNode.right.data.toString();
+//        }
+
+
+//        result += curNode.left.data.toString() + " ";
+//        result += curNode.right.data.toString() + " ";
+
+
+        result += getInOrder(curNode.left);
 
         result += curNode.data.toString() + " ";
-        result += curNode.left.data.toString() + " ";
-        result += curNode.right.data.toString() + " ";
 
-        if(curNode.right != null && curNode.right.left != null) {
+        result += getInOrder(curNode.right);
 
-        }
         return result;
     }
 
@@ -44,16 +52,15 @@ public class BinaryTree<T> {
     private String getPreOrder(TreeNode<T> curNode) {
         // Pre-order: root -> left -> right
         //TODO: return the pre order traversal of this tree, space separated
+        if(curNode == null) {
+            return "";
+        }
 
         String result = "";
         result += curNode.data.toString() + " ";
-        if(curNode.left != null) {
-            result += curNode.left.data.toString() + " ";
-            curNode = curNode.left;
-        } else if (curNode.right != null && curNode.left != null) {
-            TreeNode<T> temp = curNode;
-        }
 
+        result += getPreOrder(curNode.left);
+        result += getPreOrder(curNode.right);
 
         return result;
     }
@@ -65,17 +72,21 @@ public class BinaryTree<T> {
     private String getPostOrder(TreeNode<T> curNode) {
         // post-order: left -> right -> root
         //TODO: return the post order traversal of this tree, space separated
-
+        if(curNode == null) {
+            return "";
+        }
 
         String result = "";
 
-        result += curNode.left.data.toString() + " ";
-        if(curNode.left.right != null && curNode.left.left != null) {
-            result += curNode.left.right.data.toString() + " ";
-            curNode = curNode.left.left;
-        }
-
-        getPostOrder(curNode);
+        result += getPostOrder(curNode.left);
+        result += getPostOrder(curNode.right);
+        result += curNode.data.toString() + " ";
+//
+//        result += curNode.left.data.toString() + " ";
+//        if(curNode.left.right != null && curNode.left.left != null) {
+//            result += curNode.left.right.data.toString() + " ";
+//            curNode = curNode.left.left;
+//        }
 
         return result;
     }
