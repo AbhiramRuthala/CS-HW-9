@@ -46,7 +46,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
             return false;
         }
 
-        int compare = data.compareTo(curNode.data);
+        int compare = curNode.data.compareTo(data);
 
         if(compare == 0) {
             return true;
