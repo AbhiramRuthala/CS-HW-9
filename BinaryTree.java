@@ -2,7 +2,7 @@ package tree;
 //Name: Abhiram Ruthala
 //Computing ID: kas4kj
 //Homework Name: HW9-BST
-//Resources Used: Google AI, ChatGPT 5 for Debugging
+//Resources Used: Google AI, ChatGPT 5 for Debugging, Claude Sonnet 4.5
 
 
 public class BinaryTree<T> {
@@ -35,11 +35,11 @@ public class BinaryTree<T> {
 //        result += curNode.right.data.toString() + " ";
 
 
-        result += getInOrder(curNode.left);
+        result += getInOrder(curNode.right);
 
         result += curNode.data.toString() + " ";
 
-        result += getInOrder(curNode.right);
+        result += getInOrder(curNode.left);
 
         return result.trim();
     }
@@ -58,8 +58,8 @@ public class BinaryTree<T> {
         String result = "";
         result += curNode.data.toString() + " ";
 
-        result += getPreOrder(curNode.left);
         result += getPreOrder(curNode.right);
+        result += getPreOrder(curNode.left);
 
         return result.trim();
     }
@@ -77,8 +77,8 @@ public class BinaryTree<T> {
 
         String result = "";
 
-        result += getPostOrder(curNode.left);
         result += getPostOrder(curNode.right);
+        result += getPostOrder(curNode.left);
         result += curNode.data.toString() + " ";
 //
 //        result += curNode.left.data.toString() + " ";
