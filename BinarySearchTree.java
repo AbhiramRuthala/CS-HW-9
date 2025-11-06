@@ -31,7 +31,6 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
         return curNode;
     }
 
-
     /**
      * Returns a boolean (true of false) if the element was found in a BST
      */
@@ -47,7 +46,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
             return false;
         }
 
-        int compare = curNode.data.compareTo(data);
+        int compare = data.compareTo(curNode.data);
 
         if(compare == 0) {
             return true;
@@ -122,14 +121,14 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
         else if (data.compareTo(curNode.data) < 0) {
             // recursively call remove on LEFT subtree
 	    /* TODO: insert code here */
-            remove(data, curNode.left);
+            curNode.left = remove(data, curNode.left);
 
         }
         // if item I want to remove is larger than the data of the current node...
         else if (data.compareTo(curNode.data) > 0) {
 	    // recursively call remove on RIGHT subtree
 	    /* TODO: insert code here */
-            remove(data, curNode.right);
+            curNode.right = remove(data, curNode.right);
             
         }
 	/* Found item to remove, time to remove */
@@ -156,7 +155,6 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
                 curNode.left = remove(toDel, curNode.left);  // delete the inorder predecessor
                 return curNode;
             */
-
 
             else {
                 T toDel = findMax(curNode.left);  // find inorder predecessor (max of left child)
