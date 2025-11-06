@@ -121,14 +121,14 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
         else if (data.compareTo(curNode.data) < 0) {
             // recursively call remove on LEFT subtree
 	    /* TODO: insert code here */
-            curNode.left = remove(data, curNode.left);
+            curNode.right = remove(data, curNode.right);
 
         }
         // if item I want to remove is larger than the data of the current node...
         else if (data.compareTo(curNode.data) > 0) {
 	    // recursively call remove on RIGHT subtree
 	    /* TODO: insert code here */
-            curNode.right = remove(data, curNode.right);
+            curNode.left = remove(data, curNode.left);
             
         }
 	/* Found item to remove, time to remove */
