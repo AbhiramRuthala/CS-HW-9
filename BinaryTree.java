@@ -31,7 +31,6 @@ public class BinaryTree<T> {
 //            result += curNode.left.data.toString() + " " + curNode.data.toString() + " " + curNode.right.data.toString();
 //        }
 
-
 //        result += curNode.left.data.toString() + " ";
 //        result += curNode.right.data.toString() + " ";
 
@@ -42,7 +41,7 @@ public class BinaryTree<T> {
 
         result += getInOrder(curNode.right);
 
-        return result;
+        return result.trim();
     }
 
 
@@ -62,7 +61,7 @@ public class BinaryTree<T> {
         result += getPreOrder(curNode.left);
         result += getPreOrder(curNode.right);
 
-        return result;
+        return result.trim();
     }
 
 
@@ -88,7 +87,7 @@ public class BinaryTree<T> {
 //            curNode = curNode.left.left;
 //        }
 
-        return result;
+        return result.trim();
     }
 
 
